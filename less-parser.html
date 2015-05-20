@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Less CSS Parser AST Object Model</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/less.js/2.5.0/less.js"></script>
+    <style>
+    	textarea { width: 90%; height: 200px; }
+    	button { display: block; }
+    </style>
+  </head>
+  <body>
+  	  <h1>What's all this?</h1>
+  	  <p>I'm putting together a <a href="https://github.com/bkardell/research">survey</a> of how the various pre/post processors parse and what kind of AST they come up with that allows them to do useful work that can be turned back into CSS.  I'm hoping that by doing so we can gain insight in order to come up with a more intelligent way for the real imperative CSS Parser to produce something useful to developers.  This one is the Less parser...</p>
+	  <button>Process</button>
+	  <label for="input">Paste some input here</label>
+	  <textarea id="input">.foo { color: blue; }</textarea>
+	  <hr>
+	  <label for="output">It produces the following AST model</label>
+	  <textarea id="output"></textarea>
+	  <script>
+	  var inp = document.querySelector("#input"), out = document.querySelector("#output");
+	  document.querySelector("button").addEventListener("click", function () {
+	  	less.parse(inp.value).then(function (parsed){
+		    out.value = JSON.stringify(parsed, null, 4);
+		})
+	  }, false);
+	  </script>
+  </body>
+</html>
+
